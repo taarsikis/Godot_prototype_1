@@ -1,0 +1,63 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://PNG/sprites/opossum/opossum-3.png" type="Texture" id=1]
+[ext_resource path="res://PNG/sprites/opossum/opossum-6.png" type="Texture" id=2]
+[ext_resource path="res://PNG/sprites/opossum/opossum-5.png" type="Texture" id=3]
+[ext_resource path="res://PNG/sprites/opossum/opossum-4.png" type="Texture" id=4]
+[ext_resource path="res://PNG/sprites/opossum/opossum-1.png" type="Texture" id=5]
+[ext_resource path="res://PNG/sprites/opossum/opossum-2.png" type="Texture" id=6]
+[ext_resource path="res://Enemy.gd" type="Script" id=7]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-6.png" type="Texture" id=8]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-2.png" type="Texture" id=9]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-5.png" type="Texture" id=10]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-4.png" type="Texture" id=11]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-3.png" type="Texture" id=12]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-1.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "death",
+"speed": 60.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 12.7993 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2.54435, 3.91743 )
+
+[node name="Enemy" type="KinematicBody2D"]
+rotation = 0.00913131
+scale = Vector2( -0.940336, 0.905247 )
+script = ExtResource( 7 )
+
+[node name="anim" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "death"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -13.5247, 7.43199 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3.02659, 0.077556 )
+scale = Vector2( -1.14191, -0.769069 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -19.9236, 0.638617 )
+
+[node name="damagerange" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 4.97726, 0.254112 )
+shape = SubResource( 3 )
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

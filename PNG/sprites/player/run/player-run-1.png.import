@@ -1,0 +1,15 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/player-run-1.png-d10bf968d2107065466427a4cbd57795.res"
+
+[deps]
+
+source_file="res://PNG/sprites/player/run/player-run-1.png"
+dest_files=[ "res://.import/player-run-1.png-d10bf968d2107065466427a4cbd57795.res" ]
+
+[params]
+
+atlas_file=""
+import_mode=0
