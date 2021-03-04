@@ -5,13 +5,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.03051, 8.07491 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 3.18369 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.98106, 3.59016 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.75, 3.27468 )
 
 [node name="Tileset_ground" type="Node2D"]
@@ -154,7 +154,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="title_33/StaticBody2D"]
 position = Vector2( 0.140308, -4.34954 )
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
 [node name="title_34" type="Sprite" parent="."]
 position = Vector2( 72, 80 )
@@ -169,7 +169,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="title_34/StaticBody2D"]
 position = Vector2( 0, -4.45449 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="title_35" type="Sprite" parent="."]
 position = Vector2( 96, 80 )
@@ -184,7 +184,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="title_35/StaticBody2D"]
 position = Vector2( -0.25, -4.5 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="title_3" type="Sprite" parent="."]
 position = Vector2( 72, 0 )

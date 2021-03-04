@@ -1,0 +1,64 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Eagle – копія.gd" type="Script" id=1]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-1.png" type="Texture" id=2]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-3.png" type="Texture" id=3]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-4.png" type="Texture" id=4]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-2.png" type="Texture" id=5]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-3.png" type="Texture" id=6]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-4.png" type="Texture" id=7]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-2.png" type="Texture" id=8]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-1.png" type="Texture" id=9]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-5.png" type="Texture" id=10]
+[ext_resource path="res://PNG/sprites/enemy-death/enemy-death-6.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 19.7672
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 18.1376
+
+[node name="Eagle" type="KinematicBody2D"]
+position = Vector2( 0, -0.235969 )
+scale = Vector2( -1.04, 0.759592 )
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.707107, 2.47487 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="FirePos" type="Position2D" parent="."]
+position = Vector2( -10.664, 8.3876 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

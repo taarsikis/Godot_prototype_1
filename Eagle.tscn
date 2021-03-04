@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Eagle.gd" type="Script" id=1]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-1.png" type="Texture" id=2]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-3.png" type="Texture" id=3]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-4.png" type="Texture" id=4]
+[ext_resource path="res://PNG/sprites/eagle/eagle-attack-2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 12.1255
+
+[node name="Eagle" type="KinematicBody2D"]
+scale = Vector2( -1.04, 0.759592 )
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.707107, 2.47487 )
+shape = SubResource( 2 )

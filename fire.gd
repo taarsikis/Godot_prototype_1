@@ -31,3 +31,6 @@ func _on_fire_body_exited(body):
 		body.kill()
 	elif body.name == "Enemy5":
 		body.kill()
+	elif body.name == "Eagle":
+		body.kill()
+	print(body.name)

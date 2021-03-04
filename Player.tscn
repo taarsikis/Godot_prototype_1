@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Без назви-11115.jpg" type="Texture" id=1]
+[ext_resource path="res://PNG/sprites/player/run/player-run-5.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://PNG/sprites/player/idle/player-idle-4.png" type="Texture" id=3]
-[ext_resource path="res://Без назви-7773.jpg" type="Texture" id=4]
-[ext_resource path="res://Без назви-7771.jpg" type="Texture" id=5]
-[ext_resource path="res://Без назви-7772.jpg" type="Texture" id=6]
+[ext_resource path="res://PNG/sprites/player/run/player-run-3.png" type="Texture" id=4]
+[ext_resource path="res://PNG/sprites/player/run/player-run-6.png" type="Texture" id=5]
+[ext_resource path="res://PNG/sprites/player/run/player-run-2.png" type="Texture" id=6]
 [ext_resource path="res://PNG/sprites/player/jump/player-jump-1.png" type="Texture" id=7]
-[ext_resource path="res://Без назви-7774.jpg" type="Texture" id=8]
+[ext_resource path="res://PNG/sprites/player/run/player-run-4.png" type="Texture" id=8]
 [ext_resource path="res://PNG/sprites/player/idle/player-idle-3.png" type="Texture" id=9]
 [ext_resource path="res://PNG/sprites/player/jump/player-jump-2.png" type="Texture" id=10]
 [ext_resource path="res://PNG/sprites/player/idle/player-idle-1.png" type="Texture" id=11]
@@ -23,60 +23,68 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": false,
 "name": "fall",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "jump",
 "speed": 0.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 9.9695
-height = 3.24611
+radius = 13.6867
+height = 5.93086
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 95.0625
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( -1.19055, 2.18268 )
-scale = Vector2( -0.29533, 0.413315 )
+position = Vector2( 1.78583, 2.38111 )
+scale = Vector2( 0.30467, 0.293315 )
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 2.478, -0.917127 )
+position = Vector2( -2.89701, -5.23787 )
+scale = Vector2( 1.67721, 1.38711 )
 frames = SubResource( 1 )
 animation = "death"
 offset = Vector2( -2.29071, -4.88881 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.12373, -2.80933 )
+position = Vector2( -5.59504, -8.09024 )
 shape = SubResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -5.37501, -3.84066 )
 enabled = true
 cast_to = Vector2( 0, 15 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -6.71877, -6.72115 )
 current = true
 limit_left = 0
 limit_top = 0
 
 [node name="FirePos" type="Position2D" parent="."]
-position = Vector2( 8.61526, -2.06017 )
+position = Vector2( -6.16602, -5.42075 )
 __meta__ = {
 "_gizmo_extents_": 5.0
 }
@@ -85,3 +93,9 @@ __meta__ = {
 
 [node name="DeathScreen" parent="CanvasLayer" instance=ExtResource( 15 )]
 visible = false
+
+[node name="stop_follow" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_follow"]
+position = Vector2( -6.51279, -7.1437 )
+shape = SubResource( 3 )
